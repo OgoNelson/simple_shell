@@ -65,11 +65,11 @@ void freeinfo(info_t *input, int allf)
 			freelist(&(input->myhistory));
 		if (input->myalias)
 			freelist(&(input->myalias));
-		ffree(input->myenviron);
+		freestr(input->myenviron);
 			input->myenviron = NULL;
 		freeptr((void **)input->cmdbuf);
-		if (input->readfd > 2)
-			close(input->readfd);
+		if (input->inputdir > 2)
+			close(input->inputdir);
 		_myputchar(BUF_FLUSH);
 	}
 }

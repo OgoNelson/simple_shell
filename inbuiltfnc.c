@@ -7,7 +7,7 @@
  *  Return: exits with a given exit status
  *         (0) if input.argv[0] != "exit"
  */
-int _exitShell(info_t *input)
+int _exitshell(info_t *input)
 {
 	int exitchecker;
 
@@ -19,7 +19,7 @@ int _exitShell(info_t *input)
 			input->_status = 2;
 			print_E(input, "Illegal number: ");
 			_putsE(input->argv[1]);
-			_putcharsE('\n');
+			_putcharE('\n');
 			return (1);
 		}
 		input->error_num = _strtoint(input->argv[1]);
@@ -45,16 +45,16 @@ int _cdir(info_t *input)
 		_putstr("TODO: >>getcwd failure emsg here<<\n");
 	if (!input->argv[1])
 	{
-		dir = _getenv(input, "HOME=");
+		dir = _getEnv(input, "HOME=");
 		if (!dir)
-			cdir_ret = /* TODO: what should this be? */
+			cdir_ret =
 				chdir((dir = _getEnv(input, "PWD=")) ? dir : "/");
 		else
 			cdir_ret = chdir(dir);
 	}
-	else if (_mystrcmp(input->argv[1], "-") == 0)
+	else if (_mystrcomp(input->argv[1], "-") == 0)
 	{
-		if (!_getenv(input, "OLDPWD="))
+		if (!_getEnv(input, "OLDPWD="))
 		{
 			_putstr(c);
 			_myputchar('\n');

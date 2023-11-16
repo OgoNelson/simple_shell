@@ -69,7 +69,7 @@ int _myunsetEnv(info_t *input)
 		return (1);
 	}
 	for (j = 1; j <= input->argc; j++)
-		_unsetenv(input, input->argv[j]);
+		_unsetEnv(input, input->argv[j]);
 
 	return (0);
 }
@@ -85,8 +85,8 @@ int populateEnv_list(info_t *input)
 	list_t *_node = NULL;
 	size_t j;
 
-	for (j = 0; myenviron[j]; j++)
-		addnode_end(&_node, myenviron[j], 0);
+	for (j = 0; environ[j]; j++)
+		addnode_end(&_node, environ[j], 0);
 	input->_env = _node;
 	return (0);
 }

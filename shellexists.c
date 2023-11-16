@@ -54,7 +54,7 @@ char *_strnconcat(char *loci, char *s, int numb)
 	}
 	if (j < numb)
 		loci[i] = '\0';
-	return (s);
+	return (c);
 }
 
 /**

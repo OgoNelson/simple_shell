@@ -73,7 +73,7 @@ int _setEnv(info_t *input, char *strvar, char *val)
 	_mystrcpy(buffer, strvar);
 	_strconcat(buffer, "=");
 	_strconcat(buffer, val);
-	node = input->_env;
+	_node = input->_env;
 	while (_node)
 	{
 		o = startstr(_node->_str, strvar);

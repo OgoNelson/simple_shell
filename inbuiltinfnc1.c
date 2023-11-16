@@ -25,7 +25,7 @@ int unsetalias(info_t *input, char *s)
 	char *o, h;
 	int _ret;
 
-	o = _strchr(s, '=');
+	o = _mystrchr(s, '=');
 	if (!o)
 		return (1);
 	h = *o;

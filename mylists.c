@@ -53,7 +53,7 @@ list_t *addnode_end(list_t **hptr, const char *_str, int numb)
 	if (!newnode)
 		return (NULL);
 	_mymemset((void *)newnode, 0, sizeof(list_t));
-	new_node->_num = numb;
+	newnode->_num = numb;
 	if (_str)
 	{
 		newnode->_str = _mystrdupli(_str);

@@ -15,7 +15,7 @@ int shloop(info_t *data, char **av)
 	while (s != -1 && builtin != -2)
 	{
 		clearinfo(data);
-		if (interactive(data))
+		if (interact(data))
 			_putstr("$ ");
 		_putcharE(BUF_FLUSH);
 		s = getinput(data);
@@ -26,13 +26,13 @@ int shloop(info_t *data, char **av)
 			if (builtin == -1)
 				findcmd(data);
 		}
-		else if (interactive(data))
+		else if (interact(data))
 			_myputchar('\n');
 		freeinfo(data, 0);
 	}
 	write_hist(data);
 	freeinfo(data, 1);
-	if (!interactive(data) && data->_status)
+	if (!interact(data) && data->_status)
 		exit(data->_status);
 	if (builtin == -2)
 	{
@@ -68,7 +68,7 @@ int findbuiltin(info_t *data)
 	};
 
 	for (j = 0; builtintable[j].type; j++)
-		if (_strcmp(data->argv[0], builtintable[j].type) == 0)
+		if (_mystrcomp(data->argv[0], builtintable[j].type) == 0)
 		{
 			data->linecount++;
 			builtin_ret = builtintable[j].func(data);
@@ -108,13 +108,13 @@ void findcmd(info_t *input)
 	}
 	else
 	{
-		if ((interactive(input) || _getEnv(input, "PATH=")
+		if ((interact(input) || _getEnv(input, "PATH=")
 			|| input->argv[0][0] == '/') && exec_cmd(input, input->argv[0]))
 			forkcmd(input);
 		else if (*(input->arg) != '\n')
 		{
 			input->_status = 127;
-			print_E(info, "not found\n");
+			print_E(input, "not found\n");
 		}
 	}
 }
@@ -132,7 +132,6 @@ void forkcmd(info_t *input)
 	childpid = fork();
 	if (childpid == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}

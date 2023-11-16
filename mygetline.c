@@ -22,7 +22,7 @@ ssize_t inputbuf(info_t *input, char **_buf, size_t *_len)
 #if USE_GETLINE
 		s = getline(_buf, &lenp, stdin);
 #else
-		s = _getline(input, _buf, &lenp);
+		s = _mygetline(input, _buf, &lenp);
 #endif
 		if (s > 0)
 		{
@@ -32,7 +32,7 @@ ssize_t inputbuf(info_t *input, char **_buf, size_t *_len)
 				s--;
 			}
 			input->linecountflag = 1;
-			remove_comments(*_buf);
+			rm_comments(*_buf);
 			buildhistory_list(input, *_buf, input->_histcount++);
 			/* if (_strchr(*buf, ';')) is this a command chain? */
 			{
@@ -103,7 +103,7 @@ ssize_t readbuf(info_t *input, char *_buf, size_t *i)
 
 	if (*i)
 		return (0);
-	r = read(input->inputdir, _buf, READ_BUF_SIZE);
+	s = read(input->inputdir, _buf, READ_BUF_SIZE);
 	if (s >= 0)
 		*i = s;
 	return (s);

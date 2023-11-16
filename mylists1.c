@@ -27,7 +27,7 @@ size_t listlen(const list_t *ptr)
 char **list_to_str(list_t *ptr)
 {
 	list_t *_node = ptr;
-	size_t i = list_len(ptr), j;
+	size_t i = listlen(ptr), j;
 	char **_strs;
 	char *_str;
 

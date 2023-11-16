@@ -122,7 +122,7 @@ int replace_myvars(info_t *input)
 		}
 		if (!_mystrcomp(input->argv[j], "$$"))
 		{
-			replace_string(&(input->argv[j]),
+			replace_mystring(&(input->argv[j]),
 				_mystrdupli(convertnumb(getpid(), 10, 0)));
 			continue;
 		}

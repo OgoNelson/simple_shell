@@ -41,7 +41,7 @@ char *_mystrdupli(const char *strdupli)
 	if (!_ret)
 		return (NULL);
 	for (_length++; _length--;)
-		_ret[_length] = *--_str;
+		_ret[_length] = *--strdupli;
 	return (_ret);
 }
 

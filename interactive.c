@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * _interact - returns true if shell is in interactive mode
+ * interact - returns true if shell is in interactive mode
  * @data: struct address
  *
  * Return: 1 if in interactive mode, 0 if not
  */
-int _interact(info_t *data)
+int interact(info_t *data)
 {
-	return (is_interactive(STDIN_FILENO) && data->inputdir <= 2);
+	return (isatty(STDIN_FILENO) && data->inputdir <= 2);
 }
 
 /**

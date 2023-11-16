@@ -14,7 +14,7 @@ void _putsE(char *_str)
 		return;
 	while (_str[j] != '\0')
 	{
-		_putcharsE(_str[j]);
+		_putcharE(_str[j]);
 		j++;
 	}
 }
@@ -33,8 +33,8 @@ int _putcharE(char h)
 
 	if (h == BUF_FLUSH || j >= WRITE_BUF_SIZE)
 	{
-		write(2, buffer, i);
-		i = 0;
+		write(2, buffer, j);
+		j = 0;
 	}
 	if (h != BUF_FLUSH)
 		buffer[j++] = h;
